@@ -7,3 +7,6 @@ sp = spotipy.Spotify(auth_manager=SpotifyClientCredentials(
     client_secret="8c02517f55354fa5b86aaca95b4c7e48"
 ))
 
+results = sp.search(q='sabrinacarpenter', type='artist')
+artist = results['artists']['items'][0]
+print(f"Artist: {artist['name']}, Followers: {artist['followers']['total']}")
