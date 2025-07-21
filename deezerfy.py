@@ -94,6 +94,7 @@ def main():
     mood = ask_questions()
     # Call deezer_song function and use the mood to find the song
     song = get_deezer_song(mood)
+    # Request the release date
     album = requests.get(f"https://api.deezer.com/album/{song['album']['id']}").json()
     print("Recommended Song: ")
     print(f"\n Song: {song['title']}")
