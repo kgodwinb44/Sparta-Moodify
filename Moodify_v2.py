@@ -15,11 +15,14 @@ print("Link:", song["link"])
 # Set mood and year
 mood = "happy"
 year = "2025"
-resultByMood = requests.get("https://api.deezer.com/search", params={"q": mood, "limit": 1})
-song = resultByMood.json()["data"][0]
+resultByMood = requests.get("https://api.deezer.com/search", params={"q": mood, "limit": 10})
+songs = resultByMood.json().get("data",[])
 
+# loop to show atleast 3 songs
 print("\n🎵 Song by Mood and Year")
-print("Song:", song["title"])
-print("Artist:", song["artist"]["name"])
-print("Album:", song["album"]["title"])
-print("Link:", song["link"])
+for i, song in enumerate(songs[:3], start=1):
+    print(f"\n{i}. {song['title']}")
+    print("Song:", song["title"])
+    print("Artist:", song["artist"]["name"])
+    print("Album:", song["album"]["title"])
+    print("Link:", song["link"])
